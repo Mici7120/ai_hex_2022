@@ -29,8 +29,8 @@ function match(agentA, agentB, path) {
       let squares = JSON.parse(JSON.stringify(result.data.world));
       fs.writeFileSync('./matches/' + agentA + "_" + agentB + ".json", JSON.stringify(result.actions));
       console.log(agentA + '\t' + agentB + '\t' + ids[result.actions[result.actions.length - 1].agentID]);
-      //console.log("Winner: " + result.actions[result.actions.length - 1].agentID);
-      // console.log(result.data.world);
+      console.log("Winner: " + result.actions[result.actions.length - 1].agentID);
+      //console.log(result.data.world);
     },
     onTurn: (result) => {
     }

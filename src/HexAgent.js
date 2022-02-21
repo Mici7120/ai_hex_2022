@@ -1,6 +1,7 @@
 const Agent = require('ai-agents').Agent;
-const solver = require('./solver');
-const transposeHex = require('./transposeHex');
+const minMax = require('./minMax.js');
+const getEmptyHex = require('./getEmptyHex');
+const transposeHex = require('./transposeHex.js')
 
 class HexAgent extends Agent {
   constructor(value) {
@@ -16,39 +17,21 @@ class HexAgent extends Agent {
    */
   send() {
     let board = this.perception;
-    let size = board.length;
-    let available = getEmptyHex(board);
-    let nTurn = size * size - available.length;
-    if (nTurn == 0) { // First move
-      let move = available[Math.round(Math.random() * (available.length - 1))];
-      return [Math.floor(move / board.length), move % board.length];
-    } else if (nTurn == 1) {
-      return [Math.floor(size / 2), Math.floor(size / 2)];
-    }
+        let size = board.length;
+        let available = getEmptyHex(board);
+        let nTurn = size * size - available.length;
 
-    let move = available[Math.round(Math.random() * (available.length - 1))];
-    return [Math.floor(move / board.length), move % board.length];
+        //console.log("board_minmax_before_transpose", board);
+
+        if (nTurn % 2 == 1){
+            board = transposeHex(board);
+            //console.log("board_minmax_after_transpose", board);
+        }
+
+        return minMax(board, size);
 
   }
 
 }
 
 module.exports = HexAgent;
-
-/**
- * Return an array containing the id of the empty hex in the board
- * id = row * size + col;
- * @param {Matrix} board 
- */
-function getEmptyHex(board) {
-  let result = [];
-  let size = board.length;
-  for (let k = 0; k < size; k++) {
-    for (let j = 0; j < size; j++) {
-      if (board[k][j] === 0) {
-        result.push(k * size + j);
-      }
-    }
-  }
-  return result;
-}
