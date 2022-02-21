@@ -1,5 +1,3 @@
-const { min } = require('lodash');
-const { max } = require('lodash');
 const heuristics = require("./heuristics.js");
 const getEmptyHex = require("./getEmptyHex.js");
 const goalTest = require('./goalTest.js')
@@ -7,7 +5,7 @@ const goalTest = require('./goalTest.js')
 function minMax(board, size){
     let move;
 
-    move = maxPlay(board, [0,0], '1', 3);
+    move = maxPlay(board, [0,0], '1', 4);
 
     return move[0];
 }

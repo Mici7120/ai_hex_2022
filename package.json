@@ -5,7 +5,10 @@
   "main": "src/main.js",
   "scripts": {
     "play": "node run",
-    "build-agent": "browserify  -r ./src/HexAgent.js | uglifyjs > build/HexAgentCastillo.js"
+    "build-agent": "browserify  -r ./src/HexAgentMinMaxAlphaBeta.js | uglifyjs > build/HexAgentMici.js",
+    "build-agent-random": "browserify  -r ./src/HexAgentRandom.js | uglifyjs > build/HexAgentRandom.js",
+    "build-agent-minMax": "browserify  -r ./src/HexAgentMinMax.js | uglifyjs > build/HexAgentMinMax.js",
+    "build-agent-minMaxAlphaBeta": "browserify  -r ./src/HexAgentMinMaxAlphaBeta.js | uglifyjs > build/HexAgentMinMaxAlphaBeta.js"
   },
   "repository": {
     "type": "git",
